@@ -1,10 +1,12 @@
 package kr.co.msa_popool.career.domain;
 
+import kr.co.msa_popool.career.web.dto.CareerInfo;
 import lombok.*;
-import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+
+import static org.springframework.util.Assert.hasText;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -33,6 +35,11 @@ public class Career extends BaseEntity {
     @Builder
     private Career(Long id, LocalDateTime createdAt, LocalDateTime updatedAt, String memberId, String name, String email, String period, String selfDescription) {
         super(id, createdAt, updatedAt);
+
+        hasText(memberId, "아이디를 입력하세요");
+        hasText(name, "이름을 입력하세요");
+        hasText(email, "이메일을 입력하세요");
+
         this.memberId = memberId;
         this.name = name;
         this.email = email;
@@ -41,18 +48,13 @@ public class Career extends BaseEntity {
         this.deleted = "N";
     }
 
-    public static Career newCareer(String memberId, String name, String email, String period, String selfDescription) {
-
-        Assert.hasText(memberId,"아이디를 입력하세요");
-        Assert.hasText(name,"이름을 입력하세요");
-        Assert.hasText(email,"이메일을 입력하세요");
-
-        return Career.builder()
-            .memberId(memberId)
+    public CareerInfo toCareerInfo(){
+        return CareerInfo.builder()
             .name(name)
             .email(email)
             .period(period)
             .selfDescription(selfDescription)
             .build();
     }
+
 }

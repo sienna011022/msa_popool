@@ -43,6 +43,12 @@ public class CareerCreateRequest {
     }
 
     public Career toCareer() {
-        return Career.newCareer(memberId, name, email, period, selfDescription);
+        return Career.builder()
+            .memberId(memberId)
+            .name(name)
+            .email(email)
+            .period(period).
+            selfDescription(selfDescription)
+            .build();
     }
 }
