@@ -1,6 +1,6 @@
 package kr.co.msa_popool;
 
-import kr.co.msa_popool.career.domain.CareerCreateRequest;
+import kr.co.msa_popool.career.web.dto.CareerCreateRequest;
 import kr.co.msa_popool.career.domain.CareerRepository;
 import kr.co.msa_popool.career.service.CareerService;
 import kr.co.msa_popool.infra.ResponseFormat;
@@ -12,9 +12,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static kr.co.msa_popool.career.web.dto.CareerCreateRequest.createCareerRequest;
 import static kr.co.msa_popool.infra.ResponseCode.SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ExtendWith(MockitoExtension.class)
 public class CareerServiceTest {
@@ -29,7 +29,7 @@ public class CareerServiceTest {
 
     @BeforeEach
     public void setUp() {
-        careerRequest = new CareerCreateRequest("id", "sienna", "sienna011022@naver.com", "0years", "안녕하세요 백엔드 인턴을 준비중인 김성윤입니다");
+        careerRequest = createCareerRequest("id", "sienna", "sienna011022@naver.com", "0years", "안녕하세요 백엔드 인턴을 준비중인 김성윤입니다");
     }
 
     @Test
@@ -37,6 +37,13 @@ public class CareerServiceTest {
     public void career_생성() {
         ResponseFormat response = careerService.createCareer(careerRequest);
         assertThat(response.getCode()).isEqualTo(SUCCESS.getCode());
+    }
+
+    @Test
+    @DisplayName("인사 내역을 조회한다")
+    public  void career_조회() {
+        String memberId = "sienna011022";
+        assertThat(careerService.showCareer(memberId)).isEqualTo(CareerInfo.newCareerInfo("sienna011022", "sienna", "0years", "안녕하세요 백엔드 인턴을 준비중인 김성윤입니다"));
     }
 
 }
