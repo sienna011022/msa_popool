@@ -1,6 +1,7 @@
 package kr.co.msa_popool.career.domain;
 
 import lombok.*;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ public class Career extends BaseEntity {
     @Column(name = "email", nullable = false, length = 100)
     private String email;
 
-    @Column(name = "period", nullable = false, length = 100)
+    @Column(name = "period", length = 100)
     private String period;
 
     @Lob
@@ -41,6 +42,11 @@ public class Career extends BaseEntity {
     }
 
     public static Career newCareer(String memberId, String name, String email, String period, String selfDescription) {
+
+        Assert.hasText(memberId,"아이디를 입력하세요");
+        Assert.hasText(name,"이름을 입력하세요");
+        Assert.hasText(email,"이메일을 입력하세요");
+
         return Career.builder()
             .memberId(memberId)
             .name(name)
