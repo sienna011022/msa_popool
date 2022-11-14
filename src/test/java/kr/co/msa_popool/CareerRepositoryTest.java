@@ -29,6 +29,7 @@ public class CareerRepositoryTest {
     @Test
     public void 인사내역불러오기() {
         String memberId = "sienna1022";
+
         when(careerRepository.findByMemberId(memberId))
             .thenReturn(Optional.of(Career.builder()
                 .memberId(memberId)
