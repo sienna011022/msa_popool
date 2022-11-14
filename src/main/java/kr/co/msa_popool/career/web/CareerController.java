@@ -2,7 +2,7 @@ package kr.co.msa_popool.career.web;
 
 
 import io.swagger.annotations.ApiOperation;
-import kr.co.msa_popool.career.domain.CareerCreateRequest;
+import kr.co.msa_popool.career.web.dto.CareerCreateRequest;
 import kr.co.msa_popool.career.service.CareerService;
 import kr.co.msa_popool.infra.ResponseFormat;
 import lombok.RequiredArgsConstructor;

@@ -1,9 +1,8 @@
 package kr.co.msa_popool.exception;
 
-public class NotFoundException extends RuntimeException {
+public class NotFoundCareerException extends RuntimeException {
 
-    public NotFoundException(String message) {
-        super(message);
+    public NotFoundCareerException() {
+        super(String.valueOf(ErrorType.NOT_FOUND_CAREER));
     }
-
 }
