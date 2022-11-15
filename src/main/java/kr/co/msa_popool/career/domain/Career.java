@@ -1,6 +1,5 @@
 package kr.co.msa_popool.career.domain;
 
-import kr.co.msa_popool.career.web.dto.CareerInfo;
 import lombok.*;
 
 import javax.persistence.*;
@@ -48,13 +47,6 @@ public class Career extends BaseEntity {
         this.deleted = "N";
     }
 
-    public CareerInfo toCareerInfo(){
-        return CareerInfo.builder()
-            .name(name)
-            .email(email)
-            .period(period)
-            .selfDescription(selfDescription)
-            .build();
-    }
+
 
 }

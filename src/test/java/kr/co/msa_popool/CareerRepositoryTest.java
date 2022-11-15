@@ -10,6 +10,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
+import static java.util.Optional.ofNullable;
+import static kr.co.msa_popool.CareerFixture.MEMBER_ID;
 import static kr.co.msa_popool.CareerServiceTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -30,18 +32,12 @@ public class CareerRepositoryTest {
     @Test
     public void 인사내역불러오기() {
 
-        when(careerRepository.findByMemberId(TEST_MEMBER_ID))
-            .thenReturn(Optional.of(Career.builder()
-                .memberId(TEST_MEMBER_ID)
-                .name(TEST_NAME)
-                .email(TEST_EMAIL)
-                .period(TEST_PERIOD)
-                .selfDescription(TEST_SELF_DESCRIPTION)
-                .build()));
+        when(careerRepository.findByMemberId(MEMBER_ID))
+            .thenReturn(ofNullable(CareerFixture.createCareer()));
 
-        Optional<Career> career = careerRepository.findByMemberId(TEST_MEMBER_ID);
+        Optional<Career> career = careerRepository.findByMemberId(MEMBER_ID);
 
-        assertThat(career.get().getMemberId()).isEqualTo(TEST_MEMBER_ID);
+        assertThat(career.get().getMemberId()).isEqualTo(MEMBER_ID);
 
     }
 

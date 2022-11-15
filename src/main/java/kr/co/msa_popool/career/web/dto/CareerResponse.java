@@ -1,10 +1,11 @@
 package kr.co.msa_popool.career.web.dto;
 
+import kr.co.msa_popool.career.domain.Career;
 import lombok.Builder;
 
 import java.util.Objects;
 
-public class CareerInfo {
+public class CareerResponse {
 
     private String name;
 
@@ -15,7 +16,7 @@ public class CareerInfo {
     private String selfDescription;
 
     @Builder
-    private CareerInfo(String name, String email, String period, String selfDescription) {
+    private CareerResponse(String name, String email, String period, String selfDescription) {
         this.name = name;
         this.email = email;
         this.period = period;
@@ -23,11 +24,20 @@ public class CareerInfo {
 
     }
 
+    public static CareerResponse of(Career career) {
+        return CareerResponse.builder()
+            .name(career.getName())
+            .email(career.getEmail())
+            .period(career.getPeriod())
+            .selfDescription(career.getSelfDescription())
+            .build();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CareerInfo that = (CareerInfo) o;
+        CareerResponse that = (CareerResponse) o;
         return Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(period, that.period) && Objects.equals(selfDescription, that.selfDescription);
     }
 

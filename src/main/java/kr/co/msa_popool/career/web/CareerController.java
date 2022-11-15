@@ -4,13 +4,11 @@ package kr.co.msa_popool.career.web;
 import io.swagger.annotations.ApiOperation;
 import kr.co.msa_popool.career.web.dto.CareerCreateRequest;
 import kr.co.msa_popool.career.service.CareerService;
+import kr.co.msa_popool.career.web.dto.CareerResponse;
 import kr.co.msa_popool.infra.ResponseFormat;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -25,5 +23,13 @@ public class CareerController {
     public ResponseFormat newCareer(@RequestBody CareerCreateRequest request) {
         careerService.createCareer(request);
         return ResponseFormat.ok();
+    }
+
+
+    @ApiOperation("개인 인사 내역 조회")
+    @PostMapping(value = "/show")
+    public ResponseFormat newCareer(@RequestParam String memberId) {
+        CareerResponse careerInfo = careerService.showCareer(memberId);
+        return ResponseFormat.ok(careerInfo);
     }
 }
