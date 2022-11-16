@@ -13,6 +13,8 @@ import static org.springframework.util.Assert.hasText;
 @Table(name = "tbl_career")
 public class Career extends BaseEntity {
 
+    public static final String DELETED = "Y";
+
     @Column(name = "memberId", nullable = false, length = 100)
     private String memberId;
 
@@ -48,5 +50,11 @@ public class Career extends BaseEntity {
     }
 
 
+    public void delete() {
+        deleted = DELETED;
+    }
 
+    public boolean isDeleted(String status) {
+        return deleted.equals(status);
+    }
 }
