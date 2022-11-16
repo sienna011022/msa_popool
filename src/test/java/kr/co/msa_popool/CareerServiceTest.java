@@ -34,4 +34,18 @@ public class CareerServiceTest {
 
     }
 
+    @Test
+    @DisplayName("아이디로 인사 내역을 삭제한다 - 논리 삭제")
+    public void career_삭제() {
+        when(careerRepository.findByMemberId(MEMBER_ID))
+            .thenReturn(of(CareerFixture.createCareer().delete()));
+
+        careerService.deleteCareer(MEMBER_ID);
+
+        assertThat(careerRepository.findByMemberId(MEMBER_ID)
+            .isDeleted())
+            .isEqualTo(true);
+
+    }
+
 }
