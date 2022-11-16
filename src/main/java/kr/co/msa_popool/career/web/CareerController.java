@@ -8,6 +8,7 @@ import kr.co.msa_popool.career.web.dto.CareerResponse;
 import kr.co.msa_popool.infra.ResponseFormat;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,9 +28,16 @@ public class CareerController {
 
 
     @ApiOperation("개인 인사 내역 조회")
-    @PostMapping(value = "/show")
+    @GetMapping(value = "/show")
     public ResponseFormat newCareer(@RequestParam String memberId) {
         CareerResponse careerInfo = careerService.showCareer(memberId);
         return ResponseFormat.ok(careerInfo);
+    }
+
+    @ApiOperation("개인 인사 내역 삭제")
+    @DeleteMapping()
+    public ResponseFormat deleteCareer(@RequestParam String memberId) {
+        careerService.deleteCareer(memberId);
+        return ResponseFormat.ok();
     }
 }

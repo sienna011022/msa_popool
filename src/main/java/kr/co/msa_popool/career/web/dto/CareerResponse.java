@@ -2,9 +2,13 @@ package kr.co.msa_popool.career.web.dto;
 
 import kr.co.msa_popool.career.domain.Career;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
+@Getter
+@NoArgsConstructor
 public class CareerResponse {
 
     private String name;
