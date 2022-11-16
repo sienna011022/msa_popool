@@ -12,7 +12,6 @@ import java.util.Optional;
 
 import static java.util.Optional.ofNullable;
 import static kr.co.msa_popool.CareerFixture.MEMBER_ID;
-import static kr.co.msa_popool.CareerServiceTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
