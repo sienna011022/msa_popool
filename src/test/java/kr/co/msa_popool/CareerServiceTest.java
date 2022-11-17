@@ -3,6 +3,7 @@ package kr.co.msa_popool;
 import kr.co.msa_popool.career.domain.Career;
 import kr.co.msa_popool.career.domain.CareerRepository;
 import kr.co.msa_popool.career.service.CareerService;
+import kr.co.msa_popool.career.web.dto.CareerUpdateRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,10 +41,9 @@ public class CareerServiceTest {
     @Test
     @DisplayName("아이디로 인사 내역을 삭제한다 - 논리 삭제")
     public void career_삭제() {
-        Career career = createCareer();
 
         when(careerRepository.findByMemberId(MEMBER_ID))
-            .thenReturn(of(career));
+            .thenReturn(of(createCareer()));
 
         careerService.deleteCareer(MEMBER_ID);
 
@@ -64,7 +64,18 @@ public class CareerServiceTest {
 
         assertThatThrownBy(() -> careerService.showCareer(MEMBER_ID))
             .isInstanceOf(IllegalStateException.class);
-
     }
 
+    @Test
+    @DisplayName("인사 내역을 수정할 수 있다")
+    public void 인사내역_수정() {
+
+        when(careerRepository.findByMemberId(MEMBER_ID))
+            .thenReturn(of(createCareer()));
+
+        CareerUpdateRequest request = CareerFixture.createUpdateRequest();
+        careerService.updateCareer(MEMBER_ID, request);
+
+        assertThat(careerService.showCareer(MEMBER_ID)).isEqualTo(updateCareer());
+    }
 }
