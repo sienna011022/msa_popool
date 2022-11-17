@@ -1,4 +1,4 @@
-package kr.co.msa_popool;
+package kr.co.msa_popool.career.web;
 
 import kr.co.msa_popool.career.domain.Career;
 import kr.co.msa_popool.career.web.dto.CareerResponse;

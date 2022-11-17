@@ -1,7 +1,6 @@
-package kr.co.msa_popool;
+package kr.co.msa_popool.career.domain;
 
-import kr.co.msa_popool.career.domain.Career;
-import kr.co.msa_popool.career.domain.CareerRepository;
+import kr.co.msa_popool.career.web.CareerFixture;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static java.util.Optional.ofNullable;
-import static kr.co.msa_popool.CareerFixture.MEMBER_ID;
+import static kr.co.msa_popool.career.web.CareerFixture.MEMBER_ID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 

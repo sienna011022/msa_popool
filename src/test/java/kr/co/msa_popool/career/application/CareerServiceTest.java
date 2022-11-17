@@ -1,11 +1,11 @@
-package kr.co.msa_popool;
+package kr.co.msa_popool.career.application;
 
+import kr.co.msa_popool.career.web.CareerFixture;
 import kr.co.msa_popool.career.domain.Career;
 import kr.co.msa_popool.career.domain.CareerRepository;
 import kr.co.msa_popool.career.service.CareerService;
 import kr.co.msa_popool.career.web.dto.CareerUpdateRequest;
 import kr.co.msa_popool.exception.DeletedCareerException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static java.util.Optional.of;
-import static kr.co.msa_popool.CareerFixture.*;
+import static kr.co.msa_popool.career.web.CareerFixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;

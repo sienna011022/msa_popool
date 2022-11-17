@@ -1,10 +1,10 @@
-package kr.co.msa_popool;
+package kr.co.msa_popool.career.domain;
 
 import kr.co.msa_popool.career.web.dto.CareerCreateRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static kr.co.msa_popool.CareerFixture.*;
+import static kr.co.msa_popool.career.web.CareerFixture.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CareerCreateRequestTest {
