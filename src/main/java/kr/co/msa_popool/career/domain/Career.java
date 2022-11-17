@@ -1,5 +1,6 @@
 package kr.co.msa_popool.career.domain;
 
+import kr.co.msa_popool.career.web.dto.CareerUpdateRequest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -49,6 +50,12 @@ public class Career extends BaseEntity {
         this.deleted = "N";
     }
 
+    public void updateCareer(CareerUpdateRequest request) {
+        name = request.getName();
+        email = request.getEmail();
+        period = request.getPeriod();
+        selfDescription = request.getSelfDescription();
+    }
 
     public void delete() {
         deleted = DELETED;
@@ -57,4 +64,6 @@ public class Career extends BaseEntity {
     public boolean isDeleted(String status) {
         return deleted.equals(status);
     }
+
+
 }
