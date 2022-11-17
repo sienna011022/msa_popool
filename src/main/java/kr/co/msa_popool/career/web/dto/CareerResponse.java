@@ -19,15 +19,6 @@ public class CareerResponse {
 
     private String selfDescription;
 
-    @Builder
-    private CareerResponse(String name, String email, String period, String selfDescription) {
-        this.name = name;
-        this.email = email;
-        this.period = period;
-        this.selfDescription = selfDescription;
-
-    }
-
     public static CareerResponse of(Career career) {
         return CareerResponse.builder()
             .name(career.getName())
@@ -35,6 +26,15 @@ public class CareerResponse {
             .period(career.getPeriod())
             .selfDescription(career.getSelfDescription())
             .build();
+    }
+
+    @Builder
+    private CareerResponse(String name, String email, String period, String selfDescription) {
+        this.name = name;
+        this.email = email;
+        this.period = period;
+        this.selfDescription = selfDescription;
+
     }
 
     @Override

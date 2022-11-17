@@ -9,7 +9,6 @@ import kr.co.msa_popool.career.web.dto.CareerUpdateRequest;
 import kr.co.msa_popool.infra.ResponseFormat;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,7 +25,6 @@ public class CareerController {
         careerService.createCareer(request);
         return ResponseFormat.ok();
     }
-
 
     @ApiOperation("개인 인사 내역 조회")
     @GetMapping

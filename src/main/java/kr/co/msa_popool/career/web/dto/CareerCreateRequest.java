@@ -32,7 +32,6 @@ public class CareerCreateRequest {
     @NotBlank(message = "간단한 자기 소개를 입력해주세요")
     private String selfDescription;
 
-
     @Builder
     private CareerCreateRequest(String memberId, String name, String email, String period, String selfDescription) {
         this.memberId = memberId;

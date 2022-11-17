@@ -5,6 +5,7 @@ import kr.co.msa_popool.career.web.dto.CareerCreateRequest;
 import kr.co.msa_popool.career.domain.CareerRepository;
 import kr.co.msa_popool.career.web.dto.CareerResponse;
 import kr.co.msa_popool.career.web.dto.CareerUpdateRequest;
+import kr.co.msa_popool.exception.DeletedCareerException;
 import kr.co.msa_popool.exception.NotFoundCareerException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,7 @@ public class CareerService {
             .orElseThrow(NotFoundCareerException::new);
 
         if (career.isDeleted(DELETED)) {
-            throw new IllegalStateException("삭제된 인사 내역입니다");
+            throw new DeletedCareerException();
         }
         return career;
     }

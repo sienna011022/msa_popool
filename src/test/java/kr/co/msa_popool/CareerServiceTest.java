@@ -4,6 +4,7 @@ import kr.co.msa_popool.career.domain.Career;
 import kr.co.msa_popool.career.domain.CareerRepository;
 import kr.co.msa_popool.career.service.CareerService;
 import kr.co.msa_popool.career.web.dto.CareerUpdateRequest;
+import kr.co.msa_popool.exception.DeletedCareerException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -63,7 +64,7 @@ public class CareerServiceTest {
             .thenReturn(of(deletedCareer));
 
         assertThatThrownBy(() -> careerService.showCareer(MEMBER_ID))
-            .isInstanceOf(IllegalStateException.class);
+            .isInstanceOf(DeletedCareerException.class);
     }
 
     @Test
