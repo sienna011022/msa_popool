@@ -16,16 +16,16 @@ public class Career extends BaseEntity {
 
     public static final String DELETED = "Y";
 
-    @Column(name = "memberId", nullable = false, length = 100)
+    @Column(name = "member_id", nullable = false, length = 20)
     private String memberId;
 
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(name = "name", nullable = false, length = 20)
     private String name;
 
-    @Column(name = "email", nullable = false, length = 100)
+    @Column(name = "email", nullable = false, length = 20)
     private String email;
 
-    @Column(name = "period", length = 100)
+    @Column(name = "period", length = 10)
     private String period;
 
     @Lob
