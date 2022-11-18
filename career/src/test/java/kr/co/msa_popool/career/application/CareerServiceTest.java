@@ -36,7 +36,6 @@ public class CareerServiceTest {
 
         assertThat(careerService.showCareer(MEMBER_ID))
             .isEqualTo(createCareerInfo());
-
     }
 
     @Test

@@ -15,17 +15,18 @@ import static org.springframework.util.Assert.hasText;
 public class Career extends BaseEntity {
 
     public static final String DELETED = "Y";
+    public static final String NOT_DELETED = "N";
 
-    @Column(name = "member_id", nullable = false, length = 20)
+    @Column(nullable = false, length = 20)
     private String memberId;
 
-    @Column(name = "name", nullable = false, length = 20)
+    @Column(nullable = false, length = 20)
     private String name;
 
-    @Column(name = "email", nullable = false, length = 20)
+    @Column(nullable = false, length = 20)
     private String email;
 
-    @Column(name = "period", length = 10)
+    @Column(length = 10)
     private String period;
 
     @Lob
@@ -47,7 +48,7 @@ public class Career extends BaseEntity {
         this.email = email;
         this.period = period;
         this.selfDescription = selfDescription;
-        this.deleted = "N";
+        this.deleted = NOT_DELETED;
     }
 
     public void updateCareer(CareerUpdateRequest request) {
@@ -64,6 +65,5 @@ public class Career extends BaseEntity {
     public boolean isDeleted(String status) {
         return deleted.equals(status);
     }
-
 
 }

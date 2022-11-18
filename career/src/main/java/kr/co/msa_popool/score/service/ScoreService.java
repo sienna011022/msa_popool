@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ScoreService {
     private final CareerRepository careerRepository;
-
     private final ScoreRepository scoreRepository;
 
     @Transactional
@@ -32,6 +31,7 @@ public class ScoreService {
         scoreRepository.save(requestScore);
     }
 
+    @Transactional
     public ScoreResponse showScore(String evaluatorId) {
         Score score = scoreRepository.findByEvaluatorId(evaluatorId);
         return ScoreResponse.of(score);

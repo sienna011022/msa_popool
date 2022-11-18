@@ -54,3 +54,4 @@ public class ScoreResponse {
         return Objects.hash(attendance, sincerity, positiveness, technical, cooperative);
     }
 }
+
