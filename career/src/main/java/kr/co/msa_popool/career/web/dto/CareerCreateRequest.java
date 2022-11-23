@@ -12,23 +12,23 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class CareerCreateRequest {
 
-    @ApiModelProperty(example = "member 아이디")
+    @ApiModelProperty(example = "member1")
     @NotBlank(message = "본인의 아이디를 입력하세요")
     private String memberId;
 
-    @ApiModelProperty(example = "이름")
+    @ApiModelProperty(example = "김아무개")
     @NotBlank(message = "이름를 입력해주세요.")
     private String name;
 
-    @ApiModelProperty(example = "이메일")
+    @ApiModelProperty(example = "abcabc@gmail.com")
     @NotBlank(message = "이메일을 입력해주세요.")
     private String email;
 
-    @ApiModelProperty(example = "재직 기간")
+    @ApiModelProperty(example = "3")
     @NotBlank(message = "재직 기간을 입력해주세요")
     private String period;
 
-    @ApiModelProperty(example = "간단한 자기 소개")
+    @ApiModelProperty(example = "안녕하세요 백엔드를 지망하고 있습니다")
     @NotBlank(message = "간단한 자기 소개를 입력해주세요")
     private String selfDescription;
 
