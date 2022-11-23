@@ -11,6 +11,8 @@ import java.util.Objects;
 @NoArgsConstructor
 public class ScoreResponse {
 
+    private String targetId;
+
     private int attendance;
 
     private int sincerity;
@@ -19,11 +21,11 @@ public class ScoreResponse {
 
     private int technical;
 
-
     private int cooperative;
 
     public static ScoreResponse of(Score score) {
         return ScoreResponse.builder()
+            .targetId(score.getCareer().getMemberId())
             .attendance(score.getAttendance())
             .cooperative(score.getCooperative())
             .positiveness(score.getPositiveness())
@@ -33,7 +35,8 @@ public class ScoreResponse {
     }
 
     @Builder
-    public ScoreResponse(int attendance, int sincerity, int positiveness, int technical, int cooperative) {
+    public ScoreResponse(String targetId, int attendance, int sincerity, int positiveness, int technical, int cooperative) {
+        this.targetId = targetId;
         this.attendance = attendance;
         this.sincerity = sincerity;
         this.positiveness = positiveness;
@@ -46,12 +49,12 @@ public class ScoreResponse {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ScoreResponse that = (ScoreResponse) o;
-        return attendance == that.attendance && sincerity == that.sincerity && positiveness == that.positiveness && technical == that.technical && cooperative == that.cooperative;
+        return attendance == that.attendance && sincerity == that.sincerity && positiveness == that.positiveness && technical == that.technical && cooperative == that.cooperative && Objects.equals(targetId, that.targetId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(attendance, sincerity, positiveness, technical, cooperative);
+        return Objects.hash(targetId, attendance, sincerity, positiveness, technical, cooperative);
     }
 }
 

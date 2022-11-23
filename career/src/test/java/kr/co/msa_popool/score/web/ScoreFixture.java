@@ -1,8 +1,12 @@
 package kr.co.msa_popool.score.web;
 
+import kr.co.msa_popool.career.domain.Career;
+import kr.co.msa_popool.career.web.CareerFixture;
 import kr.co.msa_popool.score.domain.Score;
 import kr.co.msa_popool.score.web.dto.ScoreCreateRequest;
 import kr.co.msa_popool.score.web.dto.ScoreResponse;
+
+import static kr.co.msa_popool.career.web.CareerFixture.MEMBER_ID;
 
 public class ScoreFixture {
 
@@ -11,6 +15,7 @@ public class ScoreFixture {
 
     public static Score createScore() {
         return Score.builder()
+            .career(CareerFixture.createCareer())
             .evaluatorId(EVALUATOR_ID)
             .attendance(DEFAULT_TEST_SCORE)
             .cooperative(DEFAULT_TEST_SCORE)
@@ -33,6 +38,7 @@ public class ScoreFixture {
 
     public static ScoreResponse createScoreResponse() {
         return ScoreResponse.builder()
+            .targetId(MEMBER_ID)
             .attendance(DEFAULT_TEST_SCORE)
             .cooperative(DEFAULT_TEST_SCORE)
             .positiveness(DEFAULT_TEST_SCORE)

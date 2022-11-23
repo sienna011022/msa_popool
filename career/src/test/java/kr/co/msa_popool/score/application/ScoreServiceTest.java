@@ -10,6 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+
+import static java.util.Arrays.asList;
 import static java.util.Optional.of;
 import static kr.co.msa_popool.career.web.CareerFixture.*;
 import static kr.co.msa_popool.score.web.ScoreFixture.*;
@@ -28,15 +30,15 @@ public class ScoreServiceTest {
     ScoreService scoreService;
 
     @Test
-    @DisplayName("인사 내역을 등록하고, 평가자 아이디로 자신이 평가한 평가를 조회할 수 있다")
+    @DisplayName("인사 내역을 등록하고, 평가자 아이디로 자신이 평가한 평가를 모두 조회할 수 있다")
     public void 평가_등록_및_조회() {
         when(careerRepository.findByMemberId(MEMBER_ID))
             .thenReturn(of(createCareer()));
 
         when(scoreRepository.findByEvaluatorId(EVALUATOR_ID))
-            .thenReturn(createScore());
+            .thenReturn(asList(createScore()));
 
         scoreService.newScore(MEMBER_ID, createScoreRequest());
-        assertThat(scoreService.showScore(EVALUATOR_ID)).isEqualTo(createScoreResponse());
+        assertThat(scoreService.showScoreAllByEvaluator(EVALUATOR_ID)).isEqualTo(asList(createScoreResponse()));
     }
 }

@@ -16,10 +16,16 @@ public class ScoreController {
 
     private final ScoreService scoreService;
 
-    @ApiOperation("개인 인사 내역 등록")
+    @ApiOperation("평가 내역 등록")
     @PostMapping
-    public ResponseFormat newScore(@RequestParam String memberId,@RequestBody ScoreCreateRequest request) {
-        scoreService.newScore(memberId,request);
+    public ResponseFormat newScore(@RequestParam String memberId, @RequestBody ScoreCreateRequest request) {
+        scoreService.newScore(memberId, request);
         return ResponseFormat.ok();
+    }
+
+    @ApiOperation("자신이 등록한 모든 평가 내역 조회")
+    @GetMapping
+    public ResponseFormat showScore(@RequestParam String evaluatorId) {
+        return ResponseFormat.ok(scoreService.showScoreAllByEvaluator(evaluatorId));
     }
 }

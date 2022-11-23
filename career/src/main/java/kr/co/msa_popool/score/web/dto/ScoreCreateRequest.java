@@ -13,33 +13,37 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @NoArgsConstructor
 public class ScoreCreateRequest {
+    @ApiModelProperty(example = "member1")
+    @NotBlank(message = "평가하고자 하는 아이디를 입력하세요")
+    private String targetId;
 
-    @ApiModelProperty(example = "평가자 본인 아이디")
+    @ApiModelProperty(example = "evaluator1")
     @NotBlank(message = "본인 아이디를 입력하세요")
     private String evaluatorId;
 
-    @ApiModelProperty(example = "근태")
+    @ApiModelProperty(example = "5")
     @NotBlank(message = "근태점수를 입력하세요")
     private int attendance;
 
-    @ApiModelProperty(example = "성실성")
+    @ApiModelProperty(example = "5")
     @NotBlank(message = "성실성 점수를 입력하세요")
     private int sincerity;
 
-    @ApiModelProperty(example = "적극성")
+    @ApiModelProperty(example = "5")
     @NotBlank(message = "적극성 점수를 입력하세요")
     private int positiveness;
 
-    @ApiModelProperty(example = "기술스킬")
+    @ApiModelProperty(example = "5")
     @NotBlank(message = "기술 점수를 입력하세요")
     private int technical;
 
-    @ApiModelProperty(example = "협업 능력")
+    @ApiModelProperty(example = "5")
     @NotBlank(message = "협업능력 점수를 입력하세요")
     private int cooperative;
 
     @Builder
-    private ScoreCreateRequest(String evaluatorId, int attendance, int sincerity, int positiveness, int technical, int cooperative) {
+    private ScoreCreateRequest(String targetId,String evaluatorId, int attendance, int sincerity, int positiveness, int technical, int cooperative) {
+        this.targetId = targetId;
         this.evaluatorId = evaluatorId;
         this.attendance = attendance;
         this.sincerity = sincerity;

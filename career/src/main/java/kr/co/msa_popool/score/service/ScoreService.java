@@ -12,6 +12,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Getter
 @RequiredArgsConstructor
@@ -32,8 +35,10 @@ public class ScoreService {
     }
 
     @Transactional
-    public ScoreResponse showScore(String evaluatorId) {
-        Score score = scoreRepository.findByEvaluatorId(evaluatorId);
-        return ScoreResponse.of(score);
+    public List<ScoreResponse> showScoreAllByEvaluator(String evaluatorId) {
+        List<Score> score = scoreRepository.findByEvaluatorId(evaluatorId);
+        return score.stream()
+            .map(score1 -> ScoreResponse.of(score1))
+            .collect(Collectors.toList());
     }
 }
