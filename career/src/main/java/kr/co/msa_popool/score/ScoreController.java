@@ -6,6 +6,7 @@ import kr.co.msa_popool.score.service.ScoreService;
 import kr.co.msa_popool.score.web.dto.ScoreCreateRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,14 +19,21 @@ public class ScoreController {
 
     @ApiOperation("평가 내역 등록")
     @PostMapping
-    public ResponseFormat newScore(@RequestParam String memberId, @RequestBody ScoreCreateRequest request) {
-        scoreService.newScore(memberId, request);
+    public ResponseFormat newScore(@RequestBody ScoreCreateRequest request) {
+        scoreService.newScore(request);
         return ResponseFormat.ok();
     }
 
     @ApiOperation("자신이 등록한 모든 평가 내역 조회")
     @GetMapping
-    public ResponseFormat showScore(@RequestParam String evaluatorId) {
+    public ResponseFormat showAll(@RequestParam String evaluatorId) {
         return ResponseFormat.ok(scoreService.showScoreAllByEvaluator(evaluatorId));
     }
+
+    @ApiOperation("자신에게 평가된 모든 평가 내역 조회")
+    @GetMapping("/all")
+    public ResponseFormat showAllMyScores(@RequestParam String memberId, Pageable pageable) {
+        return ResponseFormat.ok(scoreService.showMyAllScore(memberId, pageable));
+    }
+
 }

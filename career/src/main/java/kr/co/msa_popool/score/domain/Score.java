@@ -19,7 +19,7 @@ import static org.springframework.util.Assert.hasText;
 public class Score extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "career_id")
+    @JoinColumn(name = "member_id")
     private Career career;
 
     @Column(nullable = false)

@@ -11,6 +11,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 
+import java.util.Arrays;
+
 import static java.util.Arrays.asList;
 import static java.util.Optional.of;
 import static kr.co.msa_popool.career.web.CareerFixture.*;
@@ -36,9 +38,10 @@ public class ScoreServiceTest {
             .thenReturn(of(createCareer()));
 
         when(scoreRepository.findByEvaluatorId(EVALUATOR_ID))
-            .thenReturn(asList(createScore()));
+            .thenReturn(of(asList(createScore())));
 
-        scoreService.newScore(MEMBER_ID, createScoreRequest());
+        scoreService.newScore(createScoreRequest());
         assertThat(scoreService.showScoreAllByEvaluator(EVALUATOR_ID)).isEqualTo(asList(createScoreResponse()));
     }
+
 }

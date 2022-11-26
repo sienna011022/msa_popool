@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 public class ScoreCreateRequest {
     @ApiModelProperty(example = "member1")
     @NotBlank(message = "평가하고자 하는 아이디를 입력하세요")
-    private String targetId;
+    private String memberId;
 
     @ApiModelProperty(example = "evaluator1")
     @NotBlank(message = "본인 아이디를 입력하세요")
@@ -42,8 +42,8 @@ public class ScoreCreateRequest {
     private int cooperative;
 
     @Builder
-    private ScoreCreateRequest(String targetId,String evaluatorId, int attendance, int sincerity, int positiveness, int technical, int cooperative) {
-        this.targetId = targetId;
+    private ScoreCreateRequest(String memberId,String evaluatorId, int attendance, int sincerity, int positiveness, int technical, int cooperative) {
+        this.memberId = memberId;
         this.evaluatorId = evaluatorId;
         this.attendance = attendance;
         this.sincerity = sincerity;
