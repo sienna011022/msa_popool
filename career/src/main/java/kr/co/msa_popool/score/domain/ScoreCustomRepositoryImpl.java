@@ -14,7 +14,7 @@ public class ScoreCustomRepositoryImpl implements ScoreCustomRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public List<ScoreResponse> findAllScores(String targetId) {
+    public List<ScoreResponse> findAllScores(String memberId) {
         return jpaQueryFactory.select(
                 new QMyScoreResponse(
                     score.career.memberId,
@@ -24,7 +24,7 @@ public class ScoreCustomRepositoryImpl implements ScoreCustomRepository {
                     score.technical,
                     score.cooperative))
             .from(score)
-            .where(score.career.memberId.eq(targetId))
+            .where(score.career.memberId.eq(memberId))
             .fetch();
     }
 }

@@ -19,7 +19,7 @@ import static org.springframework.util.Assert.hasText;
 @Table(name = "tbl_score")
 public class Score extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     @JoinColumn(name = "member_id")
     private Career career;
 

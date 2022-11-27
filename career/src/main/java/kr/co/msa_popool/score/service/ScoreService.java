@@ -35,7 +35,7 @@ public class ScoreService {
         scoreRepository.save(requestScore);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public ScoreResponses showScoreAllByEvaluator(String evaluatorId) {
         List<Score> score = findScore(evaluatorId);
 
@@ -44,7 +44,7 @@ public class ScoreService {
             .collect(Collectors.toList()));
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public ScoreResponses showMyAllScore(String targetId) {
         List<ScoreResponse> scoreResponses = scoreRepository.findAllScores(targetId);
         return ScoreResponses.of(scoreResponses);

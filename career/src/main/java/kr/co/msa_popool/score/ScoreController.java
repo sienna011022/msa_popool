@@ -1,7 +1,6 @@
 package kr.co.msa_popool.score;
 
 import io.swagger.annotations.ApiOperation;
-import kr.co.msa_popool.infra.ResponseFormat;
 import kr.co.msa_popool.score.web.dto.ScoreResponses;
 import kr.co.msa_popool.score.service.ScoreService;
 import kr.co.msa_popool.score.web.dto.ScoreCreateRequest;

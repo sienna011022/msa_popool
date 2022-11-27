@@ -37,7 +37,7 @@ public class ScoreResponse {
 
     @QueryProjection
     @Builder
-    private ScoreResponse(String memberId, int attendance, int sincerity, int positiveness, int technical, int cooperative) {
+    public ScoreResponse(String memberId, int attendance, int sincerity, int positiveness, int technical, int cooperative) {
         this.memberId = memberId;
         this.attendance = attendance;
         this.sincerity = sincerity;
