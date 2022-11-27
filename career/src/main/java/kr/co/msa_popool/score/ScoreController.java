@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
 @RestController
 @Slf4j
 @RequiredArgsConstructor
@@ -20,9 +22,9 @@ public class ScoreController {
 
     @ApiOperation("평가 내역 등록")
     @PostMapping
-    public ResponseFormat newScore(@RequestBody ScoreCreateRequest request) {
+    public ResponseEntity<Void> newScore(@RequestBody ScoreCreateRequest request) {
         scoreService.newScore(request);
-        return ResponseFormat.ok();
+        return ResponseEntity.created(URI.create("/careers/score/" + request.getEvaluatorId())).build();
     }
 
     @ApiOperation("자신이 등록한 모든 평가 내역 조회")
