@@ -1,11 +1,9 @@
 package kr.co.msa_popool.score.domain;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import kr.co.msa_popool.score.web.dto.ScoreResponse;
+
+import java.util.List;
 
 public interface ScoreCustomRepository {
-    Page<MyScoreResponse> findAllScores(String targetId, Pageable pageable);
-
-    MyScoreResponse findScore(String memberId, String evaluatorId);
-
+    List<ScoreResponse> findAllScores(String targetId);
 }

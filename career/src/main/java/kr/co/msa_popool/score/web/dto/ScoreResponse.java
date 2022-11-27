@@ -1,5 +1,6 @@
 package kr.co.msa_popool.score.web.dto;
 
+import com.querydsl.core.annotations.QueryProjection;
 import kr.co.msa_popool.score.domain.Score;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,11 +8,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
+
 @Getter
 @NoArgsConstructor
 public class ScoreResponse {
-
-    private String targetId;
+    private String memberId;
 
     private int attendance;
 
@@ -25,18 +26,19 @@ public class ScoreResponse {
 
     public static ScoreResponse of(Score score) {
         return ScoreResponse.builder()
-            .targetId(score.getCareer().getMemberId())
-            .attendance(score.getAttendance())
-            .cooperative(score.getCooperative())
+            .memberId(score.getCareer().getMemberId())
             .positiveness(score.getPositiveness())
+            .cooperative(score.getCooperative())
             .technical(score.getTechnical())
             .sincerity(score.getSincerity())
+            .attendance(score.getAttendance())
             .build();
     }
 
+    @QueryProjection
     @Builder
-    public ScoreResponse(String targetId, int attendance, int sincerity, int positiveness, int technical, int cooperative) {
-        this.targetId = targetId;
+    private ScoreResponse(String memberId, int attendance, int sincerity, int positiveness, int technical, int cooperative) {
+        this.memberId = memberId;
         this.attendance = attendance;
         this.sincerity = sincerity;
         this.positiveness = positiveness;
@@ -49,12 +51,11 @@ public class ScoreResponse {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ScoreResponse that = (ScoreResponse) o;
-        return attendance == that.attendance && sincerity == that.sincerity && positiveness == that.positiveness && technical == that.technical && cooperative == that.cooperative && Objects.equals(targetId, that.targetId);
+        return attendance == that.attendance && sincerity == that.sincerity && positiveness == that.positiveness && technical == that.technical && cooperative == that.cooperative && Objects.equals(memberId, that.memberId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(targetId, attendance, sincerity, positiveness, technical, cooperative);
+        return Objects.hash(memberId, attendance, sincerity, positiveness, technical, cooperative);
     }
 }
-

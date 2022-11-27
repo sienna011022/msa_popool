@@ -41,7 +41,7 @@ public class ScoreServiceTest {
             .thenReturn(of(asList(createScore())));
 
         scoreService.newScore(createScoreRequest());
-        assertThat(scoreService.showScoreAllByEvaluator(EVALUATOR_ID)).isEqualTo(asList(createScoreResponse()));
+        assertThat(scoreService.showScoreAllByEvaluator(EVALUATOR_ID)).isEqualTo(createScoreResponses());
     }
 
 }

@@ -4,15 +4,13 @@ import kr.co.msa_popool.career.domain.Career;
 import kr.co.msa_popool.career.domain.CareerRepository;
 import kr.co.msa_popool.exception.NotFoundCareerException;
 import kr.co.msa_popool.score.NotFoundScoreException;
-import kr.co.msa_popool.score.domain.MyScoreResponse;
+import kr.co.msa_popool.score.web.dto.ScoreResponse;
 import kr.co.msa_popool.score.domain.Score;
 import kr.co.msa_popool.score.domain.ScoreRepository;
+import kr.co.msa_popool.score.web.dto.ScoreResponses;
 import kr.co.msa_popool.score.web.dto.ScoreCreateRequest;
-import kr.co.msa_popool.score.web.dto.ScoreResponse;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,21 +36,18 @@ public class ScoreService {
     }
 
     @Transactional
-    public List<ScoreResponse> showScoreAllByEvaluator(String evaluatorId) {
+    public ScoreResponses showScoreAllByEvaluator(String evaluatorId) {
         List<Score> score = findScore(evaluatorId);
-        return score.stream()
+
+        return ScoreResponses.of(score.stream()
             .map(ScoreResponse::of)
-            .collect(Collectors.toList());
+            .collect(Collectors.toList()));
     }
 
     @Transactional
-    public Page<MyScoreResponse> showMyAllScore(String targetId, Pageable pageable) {
-        return scoreRepository.findAllScores(targetId, pageable);
-    }
-
-    @Transactional
-    public MyScoreResponse showScore(String memberId, String evaluatorId) {
-        return scoreRepository.findScore(memberId, evaluatorId);
+    public ScoreResponses showMyAllScore(String targetId) {
+        List<ScoreResponse> scoreResponses = scoreRepository.findAllScores(targetId);
+        return ScoreResponses.of(scoreResponses);
     }
 
     private List<Score> findScore(String evaluatorId) {

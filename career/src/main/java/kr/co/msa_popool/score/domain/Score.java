@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import static org.springframework.util.Assert.hasText;
 
@@ -36,10 +37,9 @@ public class Score extends BaseEntity {
     private int cooperative;
 
     @Builder
-    private Score(Long id, LocalDateTime createdAt, LocalDateTime updatedAt, Career career, String evaluatorId, int attendance, int sincerity, int positiveness, int technical, int cooperative) {
+    public Score(Long id, LocalDateTime createdAt, LocalDateTime updatedAt, Career career, String evaluatorId, int attendance, int sincerity, int positiveness, int technical, int cooperative) {
         super(id, createdAt, updatedAt);
         hasText(evaluatorId, "평가자 아이디를 입력하세요");
-
         this.career = career;
         this.evaluatorId = evaluatorId;
         this.attendance = attendance;
@@ -49,4 +49,17 @@ public class Score extends BaseEntity {
         this.cooperative = cooperative;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Score score = (Score) o;
+        return attendance == score.attendance && sincerity == score.sincerity && positiveness == score.positiveness && technical == score.technical && cooperative == score.cooperative && Objects.equals(career, score.career) && Objects.equals(evaluatorId, score.evaluatorId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(career, evaluatorId, attendance, sincerity, positiveness, technical, cooperative);
+    }
 }
